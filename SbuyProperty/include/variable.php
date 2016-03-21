@@ -1,0 +1,3 @@
+<?php
+	$titleProject = "SbuyProperty";
+?>
