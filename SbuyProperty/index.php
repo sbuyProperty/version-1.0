@@ -9,14 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo $titleProject;?></title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
 <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="css/swiper.min.css">
     <style type="text/css">
-		.swiper-container,.swiper-wrapper {
-        	width: 100%;
-			margin:0px;
-			padding:0px;
-		}
+
 	</style>
 </head>
 <body>
@@ -78,26 +74,18 @@
   </div><!-- /.container-fluid -->
 </nav>
 <!-------END Nav Bar Header-->
-<div class="row">
-         <!-- Swiper -->
-            <div class="swiper-container span12"  style="border:1px solid #F00;">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="img/banner/s01.jpg" /></div>
-                    <div class="swiper-slide"><img src="img/banner/s02.jpg" /></div>
-                    <div class="swiper-slide"><img src="img/banner/s03.jpg" /></div>
-                    <div class="swiper-slide"><img src="img/banner/s04.jpg" /></div>
-             	</div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Arrows -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-		</div>
-</div>
+
+	<div id="SLDR-ONE" class="sldr">
+		<ul class="wrp animate">
+			<li class="elmnt-one"><div class="skew"><div class="wrap"><img src="img/banner/s01.jpg"></div></div></li>
+			<li class="elmnt-two"><div class="skew"><div class="wrap"><img src="img/banner/s02.jpg"></div></div></li>
+			<li class="elmnt-three"><div class="skew"><div class="wrap"><img src="img/banner/s03.jpg"></div></div></li>
+		</ul>
+        <div class="clear"></div>
+	</div>
+    <div class="clear"></div>
 <div style="max-width:1200px;margin:0 auto;">
 <div class="container-fluid">
-        
-        
           <div class="col-sm-4 col-md-3">
             <div class="thumbnail">
               <img src="http://i.ebayimg.com/00/s/NTAwWDUwMA==/z/yUkAAOSw7ThUeZsw/$_58.JPG" alt="...">
@@ -204,20 +192,68 @@
 	<div style="max-width:1200px;margin:0 auto;">Panel footer</div>
 </div>
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery.sldr.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/swiper.min.js"></script>
-<!-- Initialize Swiper -->
 <script>
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        paginationClickable: true,
-        spaceBetween: 30,
-        centeredSlides: true,
-        autoplay: 2500,
-        autoplayDisableOnInteraction: false
-    });
-    </script>
+$( window ).load( function() {
+	$( '.sldr' ).each( function() {
+		var th = $( this );
+		th.sldr({
+			focalClass    : 'focalPoint',
+			offset        : th.width() / 2,
+			sldrWidth     : 'responsive',
+			nextSlide     : th.nextAll( '.sldr-nav.next:first' ),
+			previousSlide : th.nextAll( '.sldr-nav.prev:first' ),
+			selectors     : th.nextAll( '.selectors:first' ).find( 'li' ),
+			toggle        : th.nextAll( '.captions:first' ).find( 'div' ),
+			sldrInit      : sliderInit,
+			sldrStart     : slideStart,
+			sldrComplete  : slideComplete,
+			sldrLoaded    : sliderLoaded,
+			sldrAuto      : true,
+			sldrTime      : 5000,
+			hasChange     : true
+		});
+	});
+});
+/**
+ * Sldr Callbacks
+ */
+/**
+ * When the sldr is initiated, before the DOM is manipulated
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function sliderInit( args ) {
+}
+/**
+ * When individual slides are loaded
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function slideLoaded( args ) {
+}
+/**
+ * When the full slider is loaded, after the DOM is manipulated
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function sliderLoaded( args ) {
+}
+/**
+ * Before the slides change focal points
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function slideStart( args ) {
+}
+/**
+ * After the slides are done changing focal points
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function slideComplete( args ) {
+}
+</script>
 </body>
 </html>
